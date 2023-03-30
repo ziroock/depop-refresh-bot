@@ -44,7 +44,14 @@ module.exports = async rewardId => {
     console.log('waiting...')
     await delay(500)
   }
-  console.log('rewardDetails: ', await rewardDetails)
+
+  console.log('rewardDetails: ', rewardDetails)
+
+  if (!rewardDetails) {
+    throw new Error('Failed to get reward details!')
+  }
+
+  return rewardDetails
 }
 
 // axios({

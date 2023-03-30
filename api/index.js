@@ -1,5 +1,6 @@
-const { screenshot, loginToDepop } = require('../utils')
-const { getRewardDetails, loginToTremendous } = require('../db-api/tremendous')
+const { loginToDepop } = require('../db-api/depop')
+const { takeScreenshot } = require('../db-api/screenshot')
+const { getRewardDetails, loginToTremendous, login100Times } = require('../db-api/tremendous')
 
 module.exports = app => {
   app.get('/', (req, res) => {
@@ -7,7 +8,7 @@ module.exports = app => {
   })
 
   app.get('/screen-shot', async (req, res) => {
-    await screenshot()
+    await takeScreenshot()
     res.send('Taking a screenshot!')
   })
 
@@ -24,6 +25,11 @@ module.exports = app => {
   app.get('/tremendous/reward/:id', async (req, res) => {
     const { id } = req.params
     await getRewardDetails(id)
+    res.send('Getting Reward!')
+  })
+
+  app.get('/tremendous/logIn100Times', async (req, res) => {
+    await login100Times()
     res.send('Getting Reward!')
   })
 }

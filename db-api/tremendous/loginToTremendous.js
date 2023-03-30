@@ -8,11 +8,12 @@ module.exports = async browser => {
   const page = await browser.newPage()
 
   let cookies = []
+  const cookiesPath = './json-files/cookies.json'
 
   try {
     console.log('Loading cookies...')
     //load cookies
-    const cookiesString = await fs.readFile('./cookies.json')
+    const cookiesString = await fs.readFile(cookiesPath)
     cookies = JSON.parse(cookiesString)
     await page.setCookie(...cookies)
 
@@ -37,7 +38,7 @@ module.exports = async browser => {
       console.log('cookies: ', cookies)
 
       // Step 4: Save cookies to file to be used in other profile pages
-      await fs.writeFile('./cookies.json', JSON.stringify(cookies, null, 2))
+      await fs.writeFile(cookiesPath, JSON.stringify(cookies, null, 2))
     }
   } catch (e) {
     console.log('Failed to login!')
