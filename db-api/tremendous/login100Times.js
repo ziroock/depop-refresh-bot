@@ -12,8 +12,8 @@ const Promise = require('bluebird')
 puppeteer.use(StealthPlugin(), executablePath())
 const delay = ms => new Promise(res => setTimeout(res, ms))
 
-const username = 'zapri_zki@abv.bg'
-const password = 'ILikePizza123!@#'
+const username = 'test_username'
+const password = 'test_password'
 
 module.exports = async () => {
   const d0 = new Date()
